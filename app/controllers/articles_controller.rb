@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
+  
   # A frequent practice is to place the standard CRUD actions in each controller in the following order: index, show, new, edit, create, update and destroy. You may use any order you choose, but keep in mind that these are public methods; as mentioned earlier in this guide, they must be placed before declaring private visibility in the controller.
   def index
     @articles = Article.all
@@ -50,7 +52,7 @@ class ArticlesController < ApplicationController
       render 'edit'
     end
   end
-  
+
 
   def destroy
     @article = Article.find(params[:id])
